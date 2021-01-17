@@ -1,0 +1,1 @@
+docker run -it --rm -v ${PWD}:/home/app -w /home/app -p 8080:3000 node-server:v1

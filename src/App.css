@@ -1,0 +1,28 @@
+.Calculator {
+    border-style: outset;
+    border-width: 2px;
+    position: relative;
+    background-color: seashell;
+}
+
+.calcInput {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+#bpmInput {
+    box-sizing: content-box;
+    line-height: 1.39;
+    /* margin-top: 20px; */
+}
+
+input, button, select, optgroup, textarea {
+    margin: 20px;
+}
+
+.calcOutput {
+    text-align: center;
+    border-style: inset;
+    border-width: 1px;
+    position: center;
+}
