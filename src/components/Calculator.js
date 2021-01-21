@@ -19,94 +19,22 @@ class Calculator extends React.Component {
       return {name : x, dec : precValues[i]}; 
     });
 
-    this.handleBPMChange = this.handleBPMChange.bind(this);
-    this.handleNoteChange = this.handleNoteChange.bind(this);
-    this.handlePrecisionChange = this.handlePrecisionChange.bind(this);
-    this.handleNumeratorChange = this.handleNumeratorChange.bind(this);
-    this.handleDenominatorChange = this.handleDenominatorChange.bind(this);
+    this.handleBPMChange = (function(bpmVal) {this.setState({...this.state, bpm : bpmVal});}).bind(this);
+    this.handleNoteChange = (function(noteVal) {this.setState({...this.state, note : noteVal});}).bind(this);
+    this.handlePrecisionChange = (function(precVal) {this.setState({...this.state, prec : precVal});}).bind(this);
+    this.handleBeatNumberChange = (function(numVal) {this.setState({...this.state, numberOfBeats : numVal});}).bind(this);
 
     this.state = {
       bpm : "140", 
       note : {name : "Whole Note", dec : 4}, 
       prec : {name : "Seconds", dec : 1},
-      numerator : "4",
-      denominator: "4"
+      numberOfBeats : "4",
     };
-  }
-
-  handleBPMChange(bpmVal) {
-    const oldNote = this.state.note;
-    const oldPrec = this.state.prec;
-    const num = this.state.numerator;
-    const den = this.state.denominator;
-    this.setState({
-      bpm : bpmVal, 
-      note : oldNote, 
-      prec : oldPrec,
-      numerator : num,
-      denominator : den
-    });
-  }
-
-  handleNoteChange(noteVal) {
-    const oldBPM = this.state.bpm;
-    const oldPrec = this.state.prec;
-    const num = this.state.numerator;
-    const den = this.state.denominator;
-    this.setState({
-      bpm : oldBPM, 
-      note : noteVal, 
-      prec : oldPrec,
-      numerator : num,
-      denominator : den
-    });
-  }
-
-  handlePrecisionChange(precVal) {
-    const oldBPM = this.state.bpm;
-    const oldNote = this.state.note;
-    const num = this.state.numerator;
-    const den = this.state.denominator;
-    this.setState({
-      bpm : oldBPM, 
-      note : oldNote, 
-      prec : precVal,
-      numerator : num,
-      denominator : den
-    });
-  }
-
-  handleNumeratorChange(numVal) {
-    const oldBPM = this.state.bpm;
-    const oldNote = this.state.note;
-    const oldPrec = this.state.prec;
-    const den = this.state.denominator;
-    this.setState({
-      bpm : oldBPM, 
-      note : oldNote, 
-      prec : oldPrec,
-      numerator : numVal,
-      denominator : den    
-    });
-  }
-
-  handleDenominatorChange(denVal) {
-    const oldBPM = this.state.bpm;
-    const oldNote = this.state.note;
-    const oldPrec = this.state.prec;
-    const num = this.state.denominator;
-    this.setState({
-      bpm : oldBPM, 
-      note : oldNote, 
-      prec : oldPrec,
-      numerator : num,
-      denominator : denVal    
-    });
   }
 
   calculation() {
     const bpm = parseFloat(this.state.bpm);
-    const note = this.props.fm ? (4 * this.state.numerator / this.state.denominator) : this.state.note.dec;
+    const note = this.props.fm ? (parseFloat(this.state.numberOfBeats)) : this.state.note.dec;
     const prec = this.state.prec.dec;
     if(bpm) {
       const ret = 60 * prec * note / bpm;
@@ -123,7 +51,7 @@ class Calculator extends React.Component {
     if (!this.props.fm) {
       return (
         <div>
-          <h3>Delay Calculator</h3>
+          <h3>Standard Calculator</h3>
           <ValueSelector currentValue={this.state.note} onChange={this.handleNoteChange} pairs={this.notes} selectorName="Delay Time"/>
           <NumberInput val={this.state.bpm} onChange={this.handleBPMChange} inputName="Beats Per Minute"/>
           <ValueSelector currentValue={this.state.prec} onChange={this.handlePrecisionChange} pairs={this.precs} selectorName="Precision"/>
@@ -134,9 +62,8 @@ class Calculator extends React.Component {
     else {
       return (
         <div>
-          <h3>Delay Calculator</h3>
-          <NumberInput val={this.state.numerator} onChange={this.handleNumeratorChange} inputName="Number Of Beats"/>
-          <NumberInput val={this.state.denominator} onChange={this.handleDenominatorChange} inputName="Number Of Beats"/>
+          <h3>Custom Calculator</h3>
+          <NumberInput val={this.state.numberOfBeats} onChange={this.handleBeatNumberChange} inputName="Number Of Beats"/>
           <NumberInput val={this.state.bpm} onChange={this.handleBPMChange} inputName="Beats Per Minute"/>
           <ValueSelector currentValue={this.state.prec} onChange={this.handlePrecisionChange} pairs={this.precs} selectorName="Precision"/>
           <div className="calcInput col-sm-6 calcOutput container">{display}</div>
