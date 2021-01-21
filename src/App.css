@@ -10,10 +10,15 @@
     margin-bottom: 20px;
 }
 
-#bpmInput {
+.numberInput {
     box-sizing: content-box;
     line-height: 1.39;
-    /* margin-top: 20px; */
+}
+
+.valueSelect {
+    box-sizing: content-box;
+    width: auto;
+    line-height: 1.39;
 }
 
 input, button, select, optgroup, textarea {
@@ -25,4 +30,20 @@ input, button, select, optgroup, textarea {
     border-style: inset;
     border-width: 1px;
     position: center;
+}
+
+#viewChanger {
+    position: center;
+}
+
+#viewButtons {
+    text-align: right;
+    width: 100%;
+    display: inline-block;
+}
+
+.btn-primary {
+    width: 45%;
+    margin: 5px;
+    text-align: center;
 }
