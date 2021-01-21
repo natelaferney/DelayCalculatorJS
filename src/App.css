@@ -13,7 +13,12 @@
 .numberInput {
     box-sizing: content-box;
     line-height: 1.39;
-    /* margin-top: 20px; */
+}
+
+.valueSelect {
+    box-sizing: content-box;
+    width: auto;
+    line-height: 1.39;
 }
 
 input, button, select, optgroup, textarea {
