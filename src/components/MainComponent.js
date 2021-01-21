@@ -21,15 +21,11 @@ function ButtonRenderer(props) {
 }
 
 class MainComponent extends React.Component {
+  
   constructor(props) {
     super(props);
-    this.handleButtonClick = this.handleButtonClick.bind(this);
     this.state = {fracMode : false};
-  }
-
-  handleButtonClick() {
-    const fm = this.state.fracMode;
-    this.setState({fracMode : !fm});
+    this.handleButtonClick = (function () {this.setState({fracMode : !this.state.fracMode});}).bind(this);
   }
 
   render() {

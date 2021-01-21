@@ -3,6 +3,7 @@ import ValueSelector from './ValueSelector';
 import NumberInput from './NumberInput'
 
 class Calculator extends React.Component {
+  
   constructor(props) {
     super(props);
 

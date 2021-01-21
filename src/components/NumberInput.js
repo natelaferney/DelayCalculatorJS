@@ -4,11 +4,7 @@ class NumberInput extends React.Component {
 
   constructor(props) {
     super(props);
-    this.handleChange = this.handleChange.bind(this);
-  }
-
-  handleChange(event) {
-    this.props.onChange(event.target.value);
+    this.handleChange = (function (event) {this.props.onChange(event.target.value);}).bind(this);
   }
 
   render() {

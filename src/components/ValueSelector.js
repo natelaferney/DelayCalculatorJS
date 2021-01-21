@@ -1,17 +1,16 @@
 import React from 'react';
 
 class ValueSelector extends React.Component {
+  
   constructor(props) {
     super(props);
-    this.handleChange = this.handleChange.bind(this);
-  }
-
-  handleChange(event) {
-    const val = event.target.value;
-    const newVal = this.props.pairs.find(function(x) {
-      return x.name === val;
-    });
-    this.props.onChange(newVal);
+    this.handleChange = (function (event) {
+      const val = event.target.value;
+      const newVal = this.props.pairs.find(function(x) {
+        return x.name === val;
+      });
+      this.props.onChange(newVal);
+    }).bind(this);
   }
 
   render() {
